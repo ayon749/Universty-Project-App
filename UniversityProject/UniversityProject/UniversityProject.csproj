@@ -136,9 +136,14 @@
     <Compile Include="Migrations\202002041342109_DepartmentV1.designer.cs">
       <DependentUpon>202002041342109_DepartmentV1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002041529304_SemesterV1.cs" />
+    <Compile Include="Migrations\202002041529304_SemesterV1.designer.cs">
+      <DependentUpon>202002041529304_SemesterV1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\ProjectDbContext.cs" />
+    <Compile Include="Models\Semester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -203,6 +208,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202002041342109_DepartmentV1.resx">
       <DependentUpon>202002041342109_DepartmentV1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002041529304_SemesterV1.resx">
+      <DependentUpon>202002041529304_SemesterV1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
