@@ -10,5 +10,6 @@ namespace UniversityProject.Models
 	{
 		public DbSet<Department> Departments { get; set; }
 		public DbSet<Semester> Semesters { get; set; }
+		public DbSet<Course> Courses { get; set; }
 	}
 }
