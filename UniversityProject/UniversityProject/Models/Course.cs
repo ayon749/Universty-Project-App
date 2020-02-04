@@ -12,7 +12,9 @@ namespace UniversityProject.Models
 		[Key]
 		public int CourseId { get; set; }
 		[StringLength(50,MinimumLength =5,ErrorMessage ="Code must be at least 5 character in length.")]
+		[Display(Name ="Code")]
 		public string CourseCode { get; set; }
+		[Display(Name ="Name")]
 		public string CourseName { get; set; }
 		[Range(0.5,5,ErrorMessage ="`credit range is in between 0.5 to 5.")]
 		public double Credit { get; set; }
