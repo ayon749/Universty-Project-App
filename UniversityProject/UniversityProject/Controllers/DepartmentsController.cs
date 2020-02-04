@@ -135,5 +135,17 @@ namespace UniversityProject.Controllers
 				return Json(false, JsonRequestBehavior.AllowGet);
 			}
 		}
+		public JsonResult IsNameExits(string departmentName)
+		{
+			var dept = db.Departments.ToList();
+			if (!dept.Any(x => x.DepartmentName.ToLower() == departmentName.ToLower()))
+			{
+				return Json(true, JsonRequestBehavior.AllowGet);
+			}
+			else
+			{
+				return Json(false, JsonRequestBehavior.AllowGet);
+			}
+		}
 	}
 }

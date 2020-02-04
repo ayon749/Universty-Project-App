@@ -19,6 +19,7 @@ namespace UniversityProject.Models
 
 		[Display(Name ="Name")]
 		[Required(ErrorMessage = "Please enter the name")]
+		[Remote("IsNameExits", "Departments", HttpMethod = "POST", ErrorMessage = "Name already exist.")]
 		public string DepartmentName { get; set; }
 	}
 }
