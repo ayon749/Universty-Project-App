@@ -147,5 +147,12 @@ namespace UniversityProject.Controllers
 				return Json(false, JsonRequestBehavior.AllowGet);
 			}
 		}
+		public ActionResult ShowAllDepartment()
+		{
+			var departments = db.Departments.ToList();
+
+			return View(departments);
+
+		}
 	}
 }

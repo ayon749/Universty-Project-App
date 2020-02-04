@@ -1,0 +1,26 @@
+﻿@model List<UniversityProject.Models.Department>
+@{
+    ViewBag.Title = "ShowAllDepartment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ShowAllDepartment</h2>
+<table class="table">
+	<thead>
+		<tr>
+			<td>Code</td>
+			<td>Name</td>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach(var depts in Model)
+		{
+		<tr>
+
+			<td>@depts.DepartmentCode</td>
+			<td>@depts.DepartmentName</td>
+		</tr>
+		}
+	</tbody>
+</table>
+
