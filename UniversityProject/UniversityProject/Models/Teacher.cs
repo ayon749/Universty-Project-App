@@ -29,5 +29,7 @@ namespace UniversityProject.Models
 		public virtual Department Department { get; set; }
 		[Range(0,100,ErrorMessage ="Credit can not be negative number.")]
 		public double CreditToBeTaken { get; set; }
+
+		public double RemainingCredit { get; set; }
 	}
 }

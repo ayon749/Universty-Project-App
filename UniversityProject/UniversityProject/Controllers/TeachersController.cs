@@ -144,5 +144,21 @@ namespace UniversityProject.Controllers
 				return Json(false, JsonRequestBehavior.AllowGet);
 			}
 		}
+		public ActionResult CourseAssignToTeacher()
+		{
+			ViewBag.DepartmentId = new SelectList(db.Departments, "DepartmentId", "DepartmentCode");
+			ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "CourseCode");
+			return View();
+		}
+		public JsonResult GetTeacherByDeptId(int deptId)
+		{
+			var teachers = db.Teachers.Where(x => x.DepartmentId == deptId).ToList();
+			return Json(teachers);
+		}
+		public JsonResult GetTeacherCreaditById(int teacherId)
+		{
+			var teacher = db.Teachers.FirstOrDefault(x => x.TeacherId == teacherId);
+			return Json(teacher);
+		}
     }
 }

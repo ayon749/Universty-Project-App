@@ -132,5 +132,15 @@ namespace UniversityProject.Controllers
             }
             base.Dispose(disposing);
         }
+		public JsonResult CoursesByDept(int departId)
+		{
+			var courses = db.Courses.Where(x => x.DepartmentId == departId).ToList();
+			return Json(courses);
+		}
+		public JsonResult CourseNamebyId(int courseId)
+		{
+			var course = db.Courses.FirstOrDefault(x => x.CourseId == courseId);
+			return Json(course);
+		}
     }
 }
