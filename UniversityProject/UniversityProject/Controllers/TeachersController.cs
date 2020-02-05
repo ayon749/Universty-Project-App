@@ -147,9 +147,16 @@ namespace UniversityProject.Controllers
 		public ActionResult CourseAssignToTeacher()
 		{
 			ViewBag.DepartmentId = new SelectList(db.Departments, "DepartmentId", "DepartmentCode");
-			ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "CourseCode");
+			
 			return View();
 		}
+		//[HttpPost]
+		//public ActionResult CourseAssignToTeacher([Bind(Include =)
+		//{
+		//	ViewBag.DepartmentId = new SelectList(db.Departments, "DepartmentId", "DepartmentCode");
+		
+		//	return View();
+		//}
 		public JsonResult GetTeacherByDeptId(int deptId)
 		{
 			var teachers = db.Teachers.Where(x => x.DepartmentId == deptId).ToList();

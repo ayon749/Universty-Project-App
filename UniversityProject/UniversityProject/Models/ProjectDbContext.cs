@@ -13,5 +13,6 @@ namespace UniversityProject.Models
 		public DbSet<Course> Courses { get; set; }
 		public DbSet<Teacher> Teachers { get; set; }
 		public DbSet<Designation> Designations { get; set; }
+		public DbSet<AssignedCourses>AssignedCourses { get; set; }
 	}
 }

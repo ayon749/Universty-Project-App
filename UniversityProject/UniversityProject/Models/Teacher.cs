@@ -10,6 +10,11 @@ namespace UniversityProject.Models
 {
 	public class Teacher
 	{
+		public Teacher()
+		{
+			RemainingCredit = CreditToBeTaken;
+		}
+
 		[Key]
 		public int TeacherId { get; set; }
 		[Display(Name ="Name")]
