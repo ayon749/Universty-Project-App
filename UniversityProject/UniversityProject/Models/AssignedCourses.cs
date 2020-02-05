@@ -15,6 +15,7 @@ namespace UniversityProject.Models
 		[ForeignKey("CourseId")]
 		public virtual Course Course { get; set; }
 		public int TeacherId { get; set; }
+		public double Credit { get; set; }
 		
 	}
 }

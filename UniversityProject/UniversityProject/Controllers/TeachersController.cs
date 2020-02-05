@@ -49,10 +49,11 @@ namespace UniversityProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TeacherId,TeacherName,Address,Email,ContactNo,DesignationId,DepartmentId,CreditToBeTaken")] Teacher teacher)
+        public ActionResult Create([Bind(Include = "TeacherId,TeacherName,Address,Email,ContactNo,DesignationId,DepartmentId,CreditToBeTaken,RemainingCredit")] Teacher teacher)
         {
             if (ModelState.IsValid)
             {
+				teacher.RemainingCredit = teacher.CreditToBeTaken;
                 db.Teachers.Add(teacher);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -150,13 +151,29 @@ namespace UniversityProject.Controllers
 			
 			return View();
 		}
-		//[HttpPost]
-		//public ActionResult CourseAssignToTeacher([Bind(Include =)
-		//{
-		//	ViewBag.DepartmentId = new SelectList(db.Departments, "DepartmentId", "DepartmentCode");
-		
-		//	return View();
-		//}
+
+		[HttpPost]
+		public ActionResult CourseAssignToTeacher([Bind(Include ="CourseId,TeacherId,credit")]AssignedCourses assignedCourses)
+		{
+			if (ModelState.IsValid)
+			{
+				db.AssignedCourses.Add(assignedCourses);
+				Teacher teacher = db.Teachers.FirstOrDefault(x => x.TeacherId == assignedCourses.TeacherId);
+				teacher.RemainingCredit = teacher.RemainingCredit - assignedCourses.Credit;
+
+				
+				
+				//teacher.RemainingCredit = teacher.RemainingCredit - course.Credit;
+				db.Entry(teacher).State = EntityState.Modified;
+
+				db.SaveChanges();
+				ViewBag.DepartmentId = new SelectList(db.Departments, "DepartmentId", "DepartmentCode");
+				return View();
+			}
+			ViewBag.DepartmentId = new SelectList(db.Departments, "DepartmentId", "DepartmentCode");
+
+			return View();
+		}
 		public JsonResult GetTeacherByDeptId(int deptId)
 		{
 			var teachers = db.Teachers.Where(x => x.DepartmentId == deptId).ToList();

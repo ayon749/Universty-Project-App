@@ -52,6 +52,7 @@
 {
 	<script>
 		$(document).ready(function () {
+			$("#credit").empty();
 			$("#DepartmentId").change(function () {
 				var deptId = $("#DepartmentId").val();
 				var parameter = { deptId: deptId }
@@ -60,6 +61,7 @@
 				$("#CreditToBeTaken").empty();
 				$("#RemainingCredit").empty();
 				$("#courseId").empty();
+				$("#credit").empty();
 				$("#courseId").append('<option value=' + "" + '>--Select Course--</ option>');
 				$("#teacherId").append('<option value=' + "" + '>--Select Teacher--</ option>');
 				$.ajax({
