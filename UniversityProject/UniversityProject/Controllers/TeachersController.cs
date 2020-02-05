@@ -148,7 +148,7 @@ namespace UniversityProject.Controllers
 		public ActionResult CourseAssignToTeacher()
 		{
 			ViewBag.DepartmentId = new SelectList(db.Departments, "DepartmentId", "DepartmentCode");
-			
+			ViewBag.isAssigned = false;
 			return View();
 		}
 
@@ -157,6 +157,17 @@ namespace UniversityProject.Controllers
 		{
 			if (ModelState.IsValid)
 			{
+				var aCourse= db.AssignedCourses.FirstOrDefault(x => x.CourseId == assignedCourses.CourseId);
+				if (aCourse != null)
+				{
+					ViewBag.isAssigned = true;
+					ViewBag.DepartmentId = new SelectList(db.Departments, "DepartmentId", "DepartmentCode");
+					return View();
+				}
+				var aTeacher = db.Teachers.FirstOrDefault(x => x.TeacherId == assignedCourses.TeacherId);
+				if (aTeacher.RemainingCredit < assignedCourses.Credit)
+				{
+				}
 				db.AssignedCourses.Add(assignedCourses);
 				Teacher teacher = db.Teachers.FirstOrDefault(x => x.TeacherId == assignedCourses.TeacherId);
 				teacher.RemainingCredit = teacher.RemainingCredit - assignedCourses.Credit;
@@ -168,6 +179,7 @@ namespace UniversityProject.Controllers
 
 				db.SaveChanges();
 				ViewBag.DepartmentId = new SelectList(db.Departments, "DepartmentId", "DepartmentCode");
+				ViewBag.isAssigned = false;
 				return View();
 			}
 			ViewBag.DepartmentId = new SelectList(db.Departments, "DepartmentId", "DepartmentCode");

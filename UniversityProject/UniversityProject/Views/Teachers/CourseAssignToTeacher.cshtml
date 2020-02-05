@@ -4,9 +4,14 @@
 
 	ViewBag.Title = "CourseAssignToTeacher";
 	Layout = "~/Views/Shared/_Layout.cshtml";
+	var isAssignedAlready = ViewBag.isAssigned;
 }
 
 <h2>CourseAssignToTeacher</h2>
+@if(isAssignedAlready==true)
+{
+	<h3 class=" alert alert-danger">Course is already assigned.</h3>
+}
 
 @using (Html.BeginForm())
 {
@@ -92,6 +97,7 @@
 			$("#teacherId").change(function () {
 				var teacherId = $("#teacherId").val();
 				var parameter = { teacherId: teacherId }
+				$("#credit").empty();
 				$.ajax({
 					type: "POST",
 					url: '@Url.Action("GetTeacherCreaditById", "Teachers")',
