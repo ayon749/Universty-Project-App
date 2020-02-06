@@ -1,0 +1,55 @@
+﻿
+@{
+				/**/
+
+				ViewBag.Title = "ViewCourseStatictis";
+				Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ViewCourseStatictis</h2>
+@using (Html.BeginForm())
+{
+	<div class="form-group">
+		@Html.Label("Department")
+		@Html.DropDownList("DepartmentId", null, "--Select Department--", htmlAttributes: new { @class = "form-control" })
+
+	</div>
+	<p class="text-monospace"></p>
+	<table  class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<td>Code</td>
+				<td>Name/Tittle</td>
+				<td>Semester</td>
+				<td>Assigned To</td>
+
+			</tr>
+		</thead>
+		<tbody id="CourseInfo"></tbody>
+	</table>
+}
+@section scripts
+{
+	<script>
+		$(document).ready(function () {
+			$("#DepartmentId").change(function () {
+				var id = $("#DepartmentId").val();
+				var parameter = { id: id }
+				$("#CourseInfo").empty();
+				$.ajax({
+					  type: "POST",
+                    url: '@Url.Action("CourseInfoByDeptId", "Courses")',
+                    contentType: "application/json;charset=utf-8",
+					data: JSON.stringify(parameter),
+					success: function (courseList) {
+						$.each(courseList, function (key, value) {
+							$("#CourseInfo").append('<tr> <td>' + value.CourseCode + '</td> <td>' + value.CourseName + '</td> <td>' + value.SemesterName + '</td> <td>' + value.AssignedTo + '</td> </tr>');
+						});
+
+					}
+				})
+	
+			});
+		});
+	</script>
+}
