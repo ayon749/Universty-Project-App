@@ -149,6 +149,7 @@ namespace UniversityProject.Controllers
 		{
 			ViewBag.DepartmentId = new SelectList(db.Departments, "DepartmentId", "DepartmentCode");
 			ViewBag.isAssigned = false;
+			ViewBag.isCreditLess = false;
 			return View();
 		}
 
@@ -167,7 +168,13 @@ namespace UniversityProject.Controllers
 				var aTeacher = db.Teachers.FirstOrDefault(x => x.TeacherId == assignedCourses.TeacherId);
 				if (aTeacher.RemainingCredit < assignedCourses.Credit)
 				{
+					
+					ViewBag.isCreditLess = true;
+					ViewBag.DepartmentId = new SelectList(db.Departments, "DepartmentId", "DepartmentCode");
+					ViewBag.isAssigned = false;
+					return View();
 				}
+				ViewBag.isCreditLess = false;
 				db.AssignedCourses.Add(assignedCourses);
 				Teacher teacher = db.Teachers.FirstOrDefault(x => x.TeacherId == assignedCourses.TeacherId);
 				teacher.RemainingCredit = teacher.RemainingCredit - assignedCourses.Credit;

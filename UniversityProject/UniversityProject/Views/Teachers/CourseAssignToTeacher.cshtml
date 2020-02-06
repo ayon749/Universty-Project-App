@@ -3,17 +3,23 @@
 	/**/
 
 	ViewBag.Title = "CourseAssignToTeacher";
+
 	Layout = "~/Views/Shared/_Layout.cshtml";
 	var isAssignedAlready = ViewBag.isAssigned;
+	var isCreditLess = ViewBag.isCreditLess;
 }
 
 <h2>CourseAssignToTeacher</h2>
-@if(isAssignedAlready==true)
+@if (isCreditLess == true)
+{
+	<h4 class="alert alert-danger" >Teacher can not take this course. Remaining credit is less than course credit.</h4>
+}
+@if (isAssignedAlready == true)
 {
 	<h3 class=" alert alert-danger">Course is already assigned.</h3>
 }
 
-@using (Html.BeginForm())
+@using (Html.BeginForm(new { @id = "form1" }))
 {
 	<div class="form-group">
 		@Html.Label("Department")
@@ -125,6 +131,12 @@
 					}
 				})
 			})
+		});
+	</script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script type="text/javascript">
+		$("body").on("submit", "#form1", function () {
+			return confirm("Do you want to submit?");
 		});
 	</script>
 
