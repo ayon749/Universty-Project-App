@@ -130,6 +130,7 @@
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Controllers\TeachersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -173,6 +174,10 @@
     <Compile Include="Migrations\202002070446215_StudentV1.cs" />
     <Compile Include="Migrations\202002070446215_StudentV1.designer.cs">
       <DependentUpon>202002070446215_StudentV1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002070452427_StudentV2.cs" />
+    <Compile Include="Migrations\202002070452427_StudentV2.designer.cs">
+      <DependentUpon>202002070452427_StudentV2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AssignedCourses.cs" />
@@ -241,10 +246,12 @@
     <Content Include="Views\Teachers\Index.cshtml" />
     <Content Include="Views\Teachers\CourseAssignToTeacher.cshtml" />
     <Content Include="Views\Courses\ViewCourseStatictis.cshtml" />
+    <Content Include="Views\Students\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Course\" />
+    <Folder Include="Views\Student\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -289,6 +296,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002070446215_StudentV1.resx">
       <DependentUpon>202002070446215_StudentV1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002070452427_StudentV2.resx">
+      <DependentUpon>202002070452427_StudentV2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
