@@ -1,0 +1,53 @@
+﻿
+@{
+	ViewBag.Title = "AllocateClassRoom";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AllocateClassRoom</h2>
+
+@using (Html.BeginForm())
+{
+	<div class="form-group">
+		@Html.Label("Department")
+		@Html.DropDownList("DepartmentId", null, "--Select Department--", htmlAttributes: new { @class = "form-control" })
+	</div>
+	<div class="form-group">
+		@Html.Label("Course")
+		<select class="form-control" id="courseId" name="courseId">
+			<option value="">--Select Course--</option>
+		</select>
+	</div>
+	<div class="form-group">
+		@Html.Label("Room")
+		@Html.DropDownList("ClassRoomId", null, "--Select Room No.--", htmlAttributes: new { @class = "form-control" })
+	</div>
+}
+
+@section scripts
+{
+	<script>
+		$(document).ready(function () {
+			$("#DepartmentId").change(function () {
+				var deptId = $("#DepartmentId").val();
+				var parameter = { deptId: deptId };
+				$("#courseId").empty();
+				$("#courseId").append('<option value="">--Select Course--</option>');
+				$.ajax({
+					type: "POST",
+					url: '@Url.Action("GetCourseByDeptId", "Classrooms")',
+					contentType: "application/json;charset=utf-8",
+					data: JSON.stringify(parameter),
+					success: function (courseList) {
+						$.each(courseList,
+							function (key, value) {
+								$("#courseId").append('<option value=' + value.CourseId + '>' + value.CourseName + '</option>');
+
+							});
+					}
+				});
+			});
+		});
+	</script>
+}
+
