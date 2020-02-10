@@ -29,6 +29,19 @@
 		@Html.LabelFor(model => model.RegistrationDate)
 		@Html.EditorFor(model => model.RegistrationDate, new { htmlAttributes = new { @class = "form-control" } })
 	</div>
+	<div class="form-group">
+		@Html.LabelFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+
+		@Html.TextAreaFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+	</div>
+	<div class="form-group">
+		@Html.Label("Department")
+		@Html.DropDownList("DepartmentId", null, "--Select Department--", htmlAttributes: new { @class = "form-control" })
+
+	</div>
+	<div class="form-group">
+		<input type="submit" class="btn btn-primary" value="Register" />
+	</div>
 }
 
 @section scripts
@@ -41,7 +54,15 @@
 			$("#RegistrationDate").datepicker({
 				changeMonth: true,
 				changeYear: true
-			});
+			}),
+				$("#StudentName").empty();
+			$("#Email").empty();
+			$("#ContactNo").empty();
+			$("#RegistrationDate").empty();
+			$("#Address").empty();
+
+
+
 		})
 	</script>
 
